@@ -1,0 +1,14 @@
+#box{
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    transition: width 2s, height 2s, background-color 3s;
+}
+#box:hover{
+    width: 500px;
+    height: 500px;
+    background-color: red;
+    transform: translate(50px, 50px);
+    transition: width 2s, height 2s, background-color 3s, transform 3s;
+    
+}
