@@ -1,0 +1,11 @@
+th{
+    background-color: aqua;
+}
+/* pseudoecodigo para numeros pares */
+tr:nth-child(even){
+    background-color: azure;
+}
+/* pseudocodigo para numeros impares*/
+tr:nth-child(odd){
+    background-color: blanchedalmond;
+}
