@@ -38,6 +38,37 @@ h1{
     text-decoration: none;
     /* Con la propiedad Color: sirve para poder cambiar el color de texto */
     /* Hexadecimal: Es una forma en la cual podemos aplicar un color en 6 digitos alfanumericos */
-    color: #af1;
+    color: rgb(124, 17, 255);
 
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+ul{
+    background-color: rgba(124, 17, 255,0.3);
+}
+
+.span-1{
+    text-decoration: line-through;
+}
+
+.span-2{
+    text-decoration: overline;
+}
+
+.span-3{
+    text-decoration: underline;
+    text-decoration-color: red;
+}
+
+.span-4{
+    text-decoration: line-through;
+    text-decoration-color: blue;
+}
+
+.span-4{
+    text-decoration: double;
+    background-color: aqua;
 }
