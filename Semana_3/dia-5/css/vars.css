@@ -1,0 +1,9 @@
+/* es case sensitive ... sensible a mayusculas y minusculas */
+:root{
+    --primer-color: #45cd85;
+    --segundo-color: #abc123;
+
+    --texto-pequeno: 1rem;
+    --texto-mediano: 1.4rem;
+    --texto-grande: 1.6rem;
+}
