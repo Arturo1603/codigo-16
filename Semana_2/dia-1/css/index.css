@@ -3,12 +3,12 @@ h1{
     /* que pasa si una fuente no existe */
     /* en css tenemos la opcion de poner varios tipos de letra */
     /* para si no funciona 1 pase a las otras y asi consecutivamente */
-    font-family: apple-system, helvetica, Arial, sans-serif;
+    font-family: 'Cinzel', serif;
     font-size: 45px;
     /* font-weiht puede recibir numeros */
     /* rango del 100 al 900 */
     /* ! importante : Al poner un peso en font-weight no hay que usar unidades de medida*/
-    font-weight: 100;
+    font-weight: 400;
     /* text-decoration */
     text-decoration: underline;
 }
@@ -52,6 +52,7 @@ ul{
 
 .span-1{
     text-decoration: line-through;
+    text-transform: capitalize;
 }
 
 .span-2{
@@ -61,14 +62,40 @@ ul{
 .span-3{
     text-decoration: underline;
     text-decoration-color: red;
+    text-transform: uppercase;
 }
 
 .span-4{
     text-decoration: line-through;
     text-decoration-color: blue;
+    text-transform: capitalize;
 }
 
-.span-4{
+.span-5{
     text-decoration: double;
     background-color: aqua;
+    text-decoration-color: #fff;
+}
+/* 
+    text-transform::
+        lowercase => texto en minuscula
+        uppercase => texto en mayuscula
+        capitalize => Primera del texto en mayuscula
+*/
+.span-6{
+    color: #fff;
+    background-color: #f2f2;
+
+}
+/* Para que css pueda leer un font desde un archivo tenemos que usar @font-face esto nos permite cargar una fuente
+externa y darle un nombre para su uso */
+/* el font-family en este caso puede tener cualquier nombre, pero por buena practica
+lo mejor es nombrarla con su nombre oficial */
+@font-face{
+    font-family: "Nanum Myeongjo";
+    src: url("../fonts/NanumMyeongjo-Regular.ttf");
+}
+
+.fuente-archivo{
+    font-family:"Nanum Myeongjo" ;
 }

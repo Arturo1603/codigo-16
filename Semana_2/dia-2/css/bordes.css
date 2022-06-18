@@ -1,0 +1,81 @@
+*{
+    font-size: 20px;
+    text-align: center;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+h1{
+    /* tamaño referente al padre inmediato, donde el padre inmediato vale 1em */
+    font-size: 2em;
+}
+p{
+    /* el padre tiene una medida de 20px, por lo tanto seria 20 * 1.5 =30px */
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.small{
+    font-size: 0.6em;
+}
+.b-solid{
+    border-style: solid;
+    border-color: brown;
+    border-width: 5px;
+}
+.b-dashed{
+    border-style: dashed;
+    border-color: blue;
+}
+.b-dotted{
+    /* border: abrevia 3 propiedades en 1 */
+    /* El orden no importa y solo se puede aplicar el ancho, estilo y color en solo
+    una propiedad llamada borde */
+    border: 3px dotted blue;      
+}
+.b-double{
+    border-style: double;
+    border-color: bisque;
+}
+.b-groove{
+    border-style: groove;
+    border-color: cadetblue;
+}
+.b-hidden{
+    border-style: hidden;
+    border-color: #fefefe;
+}
+.b-inherit{
+    border-style: inherit;
+    border-color: black;
+}
+.b-initial{
+    border-style: initial;
+    border-color: #fef4;
+}
+.b-inset{
+    border-style: inset;
+    border-color: coral;
+}
+.b-none{
+    border-style: none;
+    border-color: crimson;
+}
+.b-ouset{
+    border-style: outset;
+    border-color: crimson;
+}
+.b-ridge{
+    border-style: ridge;
+    border-color: aqua;
+}
+.b-unset{
+    border-style: unset;
+    border-color: peru;
+}
+
+/* poniendo bordes de manera independiente por lado */
+.border-left-solid{
+    border-left: solid red 3px;
+}
+.border-right-dashed{
+    border-right: dashed orange 3px;
+}
