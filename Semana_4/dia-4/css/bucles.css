@@ -1,0 +1,12 @@
+#container{
+    width: 600px;
+    min-height: 100px;
+    background-color: #ddd;
+    margin: 20px auto;
+    border-radius: 10px;
+    padding: 10px;
+}
+.primos{
+    font-size: 20px;
+    
+}

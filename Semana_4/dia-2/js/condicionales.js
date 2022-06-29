@@ -53,3 +53,9 @@ document.write(mensaje);
 //* && significa and
 //* || pipa o pipe que significa or
 //* ! operacion de negacion
+
+
+// los signos iguales
+//  = asignar valor a una variable
+//  == Comparar 2 valores (se usa en una condicional)
+//  === Comparar 2 valores por el tipo de dato 
