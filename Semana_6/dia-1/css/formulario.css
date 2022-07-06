@@ -1,0 +1,11 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.text-error{
+    color: red;
+    display: none;
+    font-size: 15px;
+}
+#input-email{
+    color: black;
+}

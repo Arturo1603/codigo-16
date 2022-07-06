@@ -1,0 +1,31 @@
+*{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    box-sizing: border-box;
+}
+#container{
+    width: 600px;
+    margin: 30px auto;
+}
+input{
+    height: 40px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+}
+input[type0="text"]{
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+input[type0="button"]{
+    background-color: #0065b2;
+    color: white;
+    cursor: pointer;
+}
+
+#player{
+    border: 1px dashed #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
