@@ -11,6 +11,23 @@
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
     />
+    <!-- get Noty via CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css"
+      integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- get FA via CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
     <title>Todo List</title>
   </head>
   <style>
@@ -48,10 +65,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="?filter="
+                >Home</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="javascript: resetStorage();"
+                >Reiniciar</a
+              >
             </li>
             <li class="nav-item dropdown">
               <a
@@ -66,14 +87,28 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                  <a class="dropdown-item" href="?filter=todo">TODO</a>
+                  <a id="filter_todo" class="dropdown-item" href="?filter=todo"
+                    >TODO</a
+                  >
                 </li>
                 <li>
-                  <a class="dropdown-item" href="?filter=delete">DELETE</a>
+                  <a id="filter_done" class="dropdown-item" href="?filter=done"
+                    >DONE</a
+                  >
+                </li>
+                <li>
+                  <a
+                    id="filter_delete"
+                    class="dropdown-item"
+                    href="?filter=delete"
+                    >DELETE</a
+                  >
                 </li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
-                  <a class="dropdown-item" href="?filter=done">DONE</a>
+                  <a id="filter_all" class="dropdown-item" href="?filter=all"
+                    >ALL</a
+                  >
                 </li>
               </ul>
             </li>
@@ -95,8 +130,8 @@
         </div>
       </div>
     </nav>
-    <main>
-      <div class="container mt-5">
+    <main class="row">
+      <div class="container mt-5 col-md-7">
         <h1>Task List</h1>
         <form id="form-task" class="row my-3 needs-validation" novalidate>
           <div class="col-6 col-sm-8 col-md-9 col-lg-10">
@@ -104,23 +139,39 @@
               type="text"
               id="input-task"
               autocomplete="off"
-              placeholder="Ingresa el nombre de la tarea"
+              placeholder="Nueva tarea..."
               required
               class="form-control"
             />
             <div class="invalid-feedback">Escriba una tarea</div>
           </div>
           <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-            <button class="btn btn-outline-primary" type="submit">Crear</button>
+            <button class="btn btn-outline-primary" type="submit">
+              <i class="fa-solid fa-plus"></i>&nbsp;Add
+            </button>
           </div>
         </form>
         <section id="section-task"></section>
-         <!-- vamos a poner el detalle de la tarea -->
+        <!-- vamos a poner el detalle de la tarea -->
         <section
           id="section-detail-task"
           class="row d-flex justify-content-center"
         ></section>
       </div>
+      <!-- Seccion de graficos -->
+      <section id="section-charts" class="col-md-4 mt-5">
+        <!-- <canvas id="bar-chart" width="400" height="200"></canvas> -->
+        <select name="select-chart" id="select-chart" class="form-select">
+          <option value="" selected disabled>Selecione un grafico</option>
+          <option value="pie">Pie</option>
+          <option value="doughnut">Doughnut</option>
+          <option value="bar">Bar</option>
+          <option value="line">Line</option>
+        </select>
+        <div class="mt-5">
+          <canvas id="task-chart-report"></canvas>
+        </div>
+      </section>
     </main>
     <!-- section del modal -->
     <!-- <button
@@ -138,7 +189,7 @@
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-    <div class="modal-dialog">
+      <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Filtro de tareas</h5>
@@ -161,8 +212,7 @@
                     <th>Fecha</th>
                   </tr>
                 </thead>
-                <tbody id="tbody">
-                </tbody>
+                <tbody id="tbody"></tbody>
               </table>
             </div>
           </div>
@@ -183,12 +233,24 @@
   <!-- !nota recurden que jquery debe estar antes, para que nuestro index.js pueda
   !usar las funciones de jquery -->
   <script src="./jquery.js"></script>
-  <!-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script> -->
-  <script src="./task.js"></script>
-  <script src="./index.js"></script>
+  <!-- Libraries -->
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
     crossorigin="anonymous"
   ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"
+    integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+
+  <!-- Propios js -->
+  <script src="./task.js"></script>
+  <script src="./index.js"></script>
+  <script src="./chart-task.js"></script>
 </html>
